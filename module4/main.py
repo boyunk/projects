@@ -19,8 +19,9 @@ def home():
 
 @app.route("/api/v1/<station>/<date>/")
 def about(station, date):
-    df = pd.read_csv("")
-    temperature = df.station(date)
+    filename = ("data_small/TG_STAID"+str(station).zfill(6)+".txt")
+    df = pd.read_csv(filename, skiprows=20, parse_dates=["    DATE"])
+    temperature = df.loc[df['    DATE']== date]['   TG'].squeeze() / 10
     return {"station": station,
             "date": date,
             "temperature": temperature
@@ -31,3 +32,4 @@ if __name__ == "__main__":
 
 
 # runs on port 5000 (it'd be occupied)
+# station
