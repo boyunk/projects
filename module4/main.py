@@ -13,9 +13,11 @@ app = Flask("__name__")
 # each web page should be in templates folder
 # images should be in static folder
 
+variable = "Hello There"
+stations = pd.read_csv("data_small/stations.txt", skiprows = 17)
 @app.route("/")         # the @ symbol means it's a decorator
 def home():
-    return render_template("home.html")
+    return render_template("home.html", data = stations.to_html())
 
 @app.route("/api/v1/<station>/<date>/")
 def about(station, date):
