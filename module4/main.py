@@ -15,10 +15,11 @@ app = Flask("__name__")
 
 variable = "Hello There"
 stations = pd.read_csv("data_small/stations.txt", skiprows = 17)
+stations = stations[["STAID","STANAME                                 "]]
 @app.route("/")         # the @ symbol means it's a decorator
 def home():
     return render_template("home.html", data = stations.to_html())
-*
+
 @app.route("/api/v1/<station>/<date>/")
 def about(station, date):
     filename = ("data_small/TG_STAID"+str(station).zfill(6)+".txt")
