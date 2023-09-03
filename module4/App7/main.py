@@ -3,6 +3,8 @@ import streamlit as st
 import plotly.express as px
 from backend import get_data
 
+# TODO: create a manual error message for when the user inputs a non-existing city
+
 # Add a title, text input, slider, selectbox, and subheader
 st.title("Weather Forecast for the Next Days")
 # interactive widgits should have variables!
@@ -27,7 +29,7 @@ st.subheader(f"{option} for the next {days} days in {place}")
         # list comprehension for date
         dates = [dict["dt.txt"] for dict in filtered_data]
         # create a temperature plot
-        figure = px.line(x=d, y= temperature, labels={"x": "date", "y": "Temperature(F)"})
+        figure = px.line(x=d, y= temperature*.1, labels={"x": "date", "y": "Temperature(F)"})
         st.plotly_chart(figure)
 
 
